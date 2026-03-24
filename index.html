@@ -14,7 +14,7 @@
         <div class="input-div">
             <input type="text" id="username" placeholder="Nombre de usuario">
                             <p class="informacion" style="color: red;">
-                    Puedo incluir mayúsculas y números, min 8 caracteres, max 16.
+                    Puede incluir mayúsculas y números, min 8 caracteres, max 16.
                 </p>
 
         </div>
@@ -248,8 +248,10 @@
                 </p>
 
             <div class="input-div">
-                <span id="phone-code" style="color: white;"> +58 </span>
-                <input type="tel" id="phone" placeholder="Número de Teléfono">
+                <div id="phone-container">
+                <span id="phone-code" style="color: white;"> ## </span>
+                <input type="tel" id="phone" placeholder="Número de Teléfono" class="form-input" autocomplete="off">
+            </div>
                 <p class="informacion" style="color: red;">
                     Solo acepta numeros
                 </p>
@@ -277,7 +279,7 @@
     <footer>  
         <p>Elaborado por | <a href="https://github.com/Eileenax" target="_blank"
             style="text-decoration: none; color: white;">Eileenax</a></p>
-            </footer>   
+            </footer>  
     
 <script src="script.js"></script>
 </body>

@@ -5,11 +5,18 @@
   padding: 0;
 }
 
+#phone-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 1rem;
+
+}
 /* Fondo y fuente general */
 body {
   margin: 0;
   padding: 0;
-  background-image: url('background/background.jpg'); /* Cambia la ruta según tu carpeta */
+ /* background-image: url('background/background.jpg'); /* Cambia la ruta según tu carpeta */
   background-size: cover;                   /* Escala la imagen para cubrir toda la pantalla */
   background-position: center center;       /* Centra la imagen */
   background-repeat: no-repeat;             /* Evita que se repita */
@@ -115,6 +122,7 @@ input, select {
   opacity: 0.5;
   /* background-color: #0056b3; */
 }
+
 
 
 
