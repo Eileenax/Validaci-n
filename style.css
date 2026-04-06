@@ -15,7 +15,8 @@
 body {
   margin: 0;
   padding: 1rem;
-  display: flex
+  display: flex;
+  flex-direction: column;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
   background-image: url(multimedia/6155358.jpg); /* Cambia la ruta según tu carpeta */
@@ -38,69 +39,68 @@ body::before {
   z-index: -1;
 }
 
-
 /* Estilo para el formulario */
 #form {
-background-color: rgba(15, 18, 25, 0.6);
-  backdrop-filter: blur(15px); 
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 3rem;
-    display: flex;
-    flex-direction: column; 
-    gap: 1rem;
-    border-radius: 0.5rem; 
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    max-width: 500px;
-    margin: 3rem auto;
-  }
-  
-  /* Formulario */
-  form {
-    /*background-color: #fff;*/
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-  }
-  
-  /* Título */
-  #form-title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ffffff;
-    font-size: 1.8em;
-    margin: 0;
-  }
-  
-  /* Contenedores de entrada */
-  .input-div {
-    margin-bottom: 15px;
-    display : flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  background-color: rgba(15, 18, 25, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  margin: 3rem auto;
+}
 
-  .form-input {
-   outline: none;
-   border: none;
-   border-radius: 0.5rem;
-    padding: 0.75rem;
-    color : #f8fafc;
-    background-color: #475569;
-  }
+/* Formulario */
+form {
+  /*background-color: #fff;*/
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
 
-  .form-input::placeholder {
-    color: #cbd5e1;
-  }
-  
-  /* Inputs y select */
-  input,
-  select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+/* Título */
+#form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 1.8em;
+  margin: 0;
+}
+
+/* Contenedores de entrada */
+.input-div {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-input {
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  color: #f8fafc;
+  background-color: #475569;
+}
+
+.form-input::placeholder {
+  color: #cbd5e1;
+}
+
+/* Inputs y select */
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1em;
   margin-top: 5px;
@@ -115,28 +115,33 @@ background-color: rgba(15, 18, 25, 0.6);
   display: none;
 }
 
+.username {
+  color: #8a2be2;
+  font-weight: bold;
+}
+
 #phone-code {
   color: #f8fafc;
   background-color: #475569;
   border-radius: 0.5rem;
   padding: 0.65rem;
+  margin-top: 5px;
 }
 
-#phone-container  {
+#phone-container {
   display: flex;
   gap: 0.5rem;
 }
-
-
 
 /* Botón */
 #form-btn {
   width: 100%;
   padding: 12px;
   background-color: #8a2be2;
-  box-shadow: 0 0 10px rgba(138, 43, 226, 0.5), 
-                0 0 20px rgba(138, 43, 226, 0.3),
-                inset 0 0 10px rgba(255, 255, 255, 0.2); 
+  box-shadow:
+    0 0 10px rgba(138, 43, 226, 0.5),
+    0 0 20px rgba(138, 43, 226, 0.3),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
   color: white;
   font-weight: bold;
   border: none;
@@ -148,8 +153,9 @@ background-color: rgba(15, 18, 25, 0.6);
 
 #form-btn:hover {
   background-color: #9370db;
- box-shadow: 0 0 15px rgba(138, 43, 226, 0.7), 
-                0 0 30px rgba(138, 43, 226, 0.5);
+  box-shadow:
+    0 0 15px rgba(138, 43, 226, 0.7),
+    0 0 30px rgba(138, 43, 226, 0.5);
 }
 
 #form-btn:disabled {
@@ -174,19 +180,20 @@ background-color: rgba(15, 18, 25, 0.6);
 footer {
   background-color: transparent;
   color: white;
-  text-align: center;
+  text-align: top;
   padding: 20px;
+  border-top: 1px solid #8a2be2;
 }
 /* Responsive */
 @media (max-width: 600px) {
   form {
     padding: 20px;
   }
-  
+
   #form-title {
     font-size: 1.5em;
   }
-  
+
   input,
   select {
     font-size: 0.95em;
