@@ -29,20 +29,28 @@ let confirmPasswordValidation = false;
 let countryValidation = false;
 
 // bloque de inicializacion para limpiar la visualizacion de la lista de paises.
-//y funcion de validacion
+// funcion de validacion y funcion para comparar contraseñas al final del código.
 // [...countries] es un operador de propagación que toma toda la lista de paises y las convierte en un array para poder usar .forEach() y modificar el texto de cada opción.
 [...countries].forEach((options) => {
   options.innerHTML = options.innerHTML.split("(")[0]; // .split("(") corta el texto donde haya un paréntesis.
   // [0] le dice a JS que se quede con la primera parte (el nombre del país).
 });
 
-// validacion general pato:
+// funcion para comparar si las dos claves son iguales
+const validarIguales = () => {
+  // comparamos los dos campos de contraseña, si son iguales y no están vacíos, la validación es true.
+  confirmPasswordValidation =
+    passwordInput.value === confirmPasswordInput.value &&
+    passwordInput.value !== "";
+};
+
+// validacion visual general pato:
 // esta función decide si el input se pone rojo o verde y si el botón se activa.
 const validation = (e, validation, element) => {
   const informacion = // la variable informacion es donde guardo el mensaje de error.
     element.id == "phone" // el ID del campo es igual a "phone"?
-      ? e.target.parentElement.children[2] // si es True: busca en el contenedor, posición 2.
-      : e.target.parentElement.children[1]; // si es False: busca en el contenedor, posición 1.
+      ? element.parentElement.parentElement.children[1] // si es True: busca en el contenedor, posición 2.
+      : element.parentElement.querySelector(".informacion"); // si es False: busca en el contenedor del input.
 
   // logica del boton de registro yep
   // estará bloqueado (true) si el usuario NO es válido, O si el email NO es válido, O si el teléfono NO es válido... de lo contrario, estará desbloqueado (false)
@@ -108,51 +116,27 @@ countries.addEventListener("input", (e) => {
 
 phoneInput.addEventListener("input", (e) => {
   phoneValidation = numeroMovil.test(e.target.value);
-
-  //para el teléfono el mensaje de error está un nivel más arriba en el HTML (parentElement.parentElement).
-  const informacion = e.target.parentElement.parentElement.children[1];
-
-  if (phoneValidation) {
-    phoneInput.classList.add("correct");
-    phoneInput.classList.remove("incorrect");
-    if (informacion) informacion.classList.remove("show-information");
-  } else {
-    phoneInput.classList.add("incorrect");
-    phoneInput.classList.remove("correct");
-    if (informacion) informacion.classList.add("show-information");
-  }
-
   //función de validación one more time para actualizar el estado del botón.
   validation(e, phoneValidation, phoneInput);
 });
 
 //contraseñaaaaaaaaa
 passwordInput.addEventListener("input", (e) => {
-  passwordValidation = passwordRegex.test(e.target.value);
-  validation(e, passwordValidation, passwordInput);
+  passwordValidation = passwordRegex.test(e.target.value); // Reviso si cumple el formato de la RegEx
+  validation(e, passwordValidation, passwordInput); // llamo a validation para colores
 
-  // si el segundo cuadro ya tiene texto, verificamos que sigan siendo iguales y que la primera contraseña sea válida, para actualizar su estado de validación.
+  //si el usuario ya escribió algo en el cuadro de confirmar contraseña, entonces vuelvo a validar si son iguales para actualizar el estado del botón y los colores del segundo cuadro.
   if (confirmPasswordInput.value !== "") {
-    confirmPasswordValidation =
-      e.target.value === confirmPasswordInput.value && passwordValidation;
-    validation(
-      { target: confirmPasswordInput },
-      confirmPasswordValidation,
-      confirmPasswordInput,
-    );
+    //fuerzo a que se vuelvan a validar para que no queden diferentes aunque el usuario haya cambiado la contraseña después de escribir la confirmación.
+    validarIguales(); // actualizamos el estado
+    validation(e, confirmPasswordValidation, confirmPasswordInput); // aplico los cambios al segundo cuadro para que se ponga rojo o verde dependiendo si son iguales o no.
   }
 });
 
+// evento para Confirmar Contraseña
 confirmPasswordInput.addEventListener("input", (e) => {
-  // 333triple filtro para validar la confirmación de contraseña
-  confirmPasswordValidation =
-    e.target.value === passwordInput.value &&
-    e.target.value !== "" &&
-    passwordValidation;
-  //1lo que se escrbio en el segundo cuadro es igual a lo que esta en el primero
-  //2 el cuadro no está vacio
-  //3la primera contraseña ya es válida
-  validation(e, confirmPasswordValidation, confirmPasswordInput);
+  validarIguales(); // Primero comparo si son identicas
+  validation(e, confirmPasswordValidation, confirmPasswordInput); //  validation para mostrar el error del HTML
 });
 
 // enviar el formulario:
@@ -171,4 +155,7 @@ form.addEventListener("submit", (e) => {
 
   console.log(user);
   console.log("Formulario enviado");
+  alert(
+    `¡Bienvenid@ ${usernameInput.value}! Tu formulario fue enviado con éxito.`,
+  );
 });

@@ -315,7 +315,7 @@
             <!-- posición 0  -->
             <span id="phone-code" style="color: white"> ## </span>
             <input
-              type="tel"
+              type="number"
               id="phone"
               placeholder="Número de Teléfono"
               class="form-input"
@@ -323,7 +323,9 @@
             />
           </div>
           <!-- posición 1  -->
-          <p class="informacion" style="color: red">Sólo acepta numeros.</p>
+          <p class="informacion" style="color: red">
+            Introduzca un número de teléfono válido.
+          </p>
           <!-- posición 2  -->
         </div>
 
@@ -346,10 +348,10 @@
             placeholder="Confirmar Contraseña"
             class="form-input"
           />
+          <p class="informacion" style="color: red">
+            Las contraseñas no coinciden.
+          </p>
         </div>
-        <p class="informacion" style="color: red">
-          Debe incluir 1 número y 1 letra mayúscula. Máximo 16 caracteres
-        </p>
       </div>
 
       <button disabled id="form-btn">Registrar</button>
